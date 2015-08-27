@@ -1,0 +1,20 @@
+        .jumbotron{
+            width: 650px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-control{
+            margin-bottom: 5px;;
+        }
+        .selecionado{
+            background-color: #777777;
+            color: #ffffff;
+        }
+        .erro-validacao{
+            color: #c9302c;
+        }
+        .negrito{
+            font-weight: bold;
+        }

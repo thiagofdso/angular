@@ -1,84 +1,59 @@
 <html ng-app="listaTelefonica">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title> Lista Telefonica </title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
-    <style>
-        .jumbotron{
-            width: 500px;
-            text-align: center;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-control{
-            margin-bottom: 5px;;
-        }
-        .selecionado{
-            background-color: #777777;
-            color: #ffffff;
-        }
-        .erro-validacao{
-            color: #c9302c;
-        }
-        .negrito{
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-locale_pt-br.js"></script>
     <script src="lib/angular/angular-messages.js"></script>
-    <script>
-        angular.module("listaTelefonica", ["ngMessages"]);
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
-            $scope.app = "Lista Telefonica";
-            $scope.reverso = false;
-            $scope.contatos=[
-                {nome:"Pedro", telefone:"99998888",operadora:{nome:"Oi",codigo:"14",categoria:"Celular",preco:2},data:new Date()},
-                {nome: "Ana", telefone:"99997777",operadora:{nome:"Vivo",codigo:"15",categoria:"Celular",preco:1},data:new Date()},
-                {nome: "Maria", telefone:"99996666",operadora:{nome:"Tim",codigo:"41",categoria:"Celular",preco:3},data:new Date()}
-            ];
-            $scope.operadoras=[
-                {nome:"Oi",codigo:"14",categoria:"Celular",preco:2},
-                {nome:"Vivo",codigo:"15",categoria:"Celular",preco:1},
-                {nome:"Tim",codigo:"41",categoria:"Celular",preco:3},
-                {nome:"GVT",codigo:"25",categoria:"Fixo",preco:1},
-                {nome:"Embratel",codigo:"21",categoria:"Fixo",preco:2}
-            ];
-            $scope.adicionarContato = function(contato){
-                $scope.contatos.push(angular.copy(contato));
-                delete $scope.contato;
-                $scope.contatoForm.$setPristine();
-            };
-            $scope.apagarContatos = function(contatos){
-                $scope.contatos=contatos.filter(function(contato){
-                    if(!contato.selecionado)return contato;
-                });
-            }
-            $scope.isContatoSelecionado = function (contatos) {
-                return contatos.some(function (contato) {
-                    return contato.selecionado;
-                });
-            };
-            $scope.ordenarPor = function(campo) {
-                if ($scope.criterioDeOrdenacao == campo) {
-                    $scope.reverso = !$scope.reverso;
-                }else{
-                    $scope.reverso = false;
-                }
-                $scope.criterioDeOrdenacao = campo;
-
-            };
-        });
-    </script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/listaTelefonicaCtrl.js"></script>
+    <script src="js/services/contatosAPIservice.js"></script>
+    <script src="js/services/operadorasAPIservice.js"></script>
+    <script src="lib/serialGenerator/serialGenerator.js"></script>
+    <script src="lib/ui/ui.js"></script>
+    <script src="js/config/serialGeneratorConfig.js"></script>
+    <script src="js/value/configValue.js"></script>
+    <script src="js/filters/namefilter.js"></script>
+    <script src="js/filters/elipsisFilter.js"></script>
+    <script src="js/directives/uiAlertDirective.js"></script>
+    <script src="js/directives/uiDateDirective.js"></script>
 </head>
 <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
         <h4 ng-bind="app"></h4>
+
+        <ui-alert title="Ops, aconteceu um problema" ng-show="error">
+            {{error}}
+        </ui-alert>
+        <ui-accordions>
+            <ui-accordion title="Accordion 1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ui-accordion>
+
+            <ui-accordion title="Accordion 2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ui-accordion>
+
+            <ui-accordion title="Accordion 3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ui-accordion>
+
+            <ui-accordion title="Accordion 4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ui-accordion>
+
+            <ui-accordion title="Accordion 5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ui-accordion>
+        </ui-accordions>
         <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
-        <table class="table">
+        <table ng-show="contatos.length > 0" class="table">
             <tr>
                 <th></th>
+                <th>Serial</th>
                 <th><a href="" ng-click="ordenarPor('nome')"> Nome</a></th>
                 <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
                 <th>Operadora</th>
@@ -86,7 +61,8 @@
             </tr>
             <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:reverso" >
                 <td><input type="checkbox" ng-model="contato.selecionado"/> </td>
-                <td>{{contato.nome}}</td>
+                <td>{{contato.serial}}</td>
+                <td>{{contato.nome | name | elipsis:10}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
                 <td>{{contato.data | date:'dd/MM/yyyy'}}</td>
@@ -98,6 +74,8 @@
             <input class="form-control" type="text" ng-model="contato.nome" name="nome" ng-required="true" placeholder="Nome" ng-minlength="10"/>
             <label class="form-control-static" ng-class="{'erro-validacao': contatoForm.telefone.$invalid && contatoForm.telefone.$dirty}">Telefone</label>
             <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" ng-required="true" placeholder="Telefone" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+            <label class="form-control-static">Data</label>
+            <input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
             <label class="form-control-static">Operadora</label>
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora  as operadora.nome +'('+(operadora.preco|currency)+')' group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
                 <option value="">Selecione uma Operadora</option>
@@ -124,6 +102,6 @@
             <button ng-click="apagarContatos(contatos)" class="btn btn-danger btn-block" ng-show="isContatoSelecionado(contatos)">Remover Conato</button>
 
     </div>
-    <div ng-include="'footer.html'"></div>
+    <div ng-include="'view/footer.html'"></div>
 </body>
 </html>
