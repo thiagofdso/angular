@@ -1,0 +1,1 @@
+!function(a,b,c){var d=function(){return{init:function(){console.log(this.soma_valor(3,5))},soma_valor:function(a,b){return a+b}}};d().init()}(window,document);

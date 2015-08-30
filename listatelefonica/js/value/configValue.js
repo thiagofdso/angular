@@ -1,3 +1,3 @@
 angular.module("listaTelefonica").value("config",{
-    baseURL:"http://localhost:3412"
+    baseURL:"http://crudsoftware.ddns.net:3412"
 });
