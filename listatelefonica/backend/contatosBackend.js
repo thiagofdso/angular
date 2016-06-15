@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
 
 var contatos = [
 	{nome: "Bruno", telefone: "9999-2222", data: new Date(), operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
